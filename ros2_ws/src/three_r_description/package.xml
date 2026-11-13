@@ -2,10 +2,12 @@
 <package format="3">
   <name>three_r_description</name>
   <version>0.1.0</version>
-  <description>Provisional URDF/Xacro description of a planar 3R manipulator.</description>
+  <description>CAD-mesh URDF/Xacro description of the planar 3R manipulator.</description>
   <maintainer email="maintainer@example.com">3R Manipulator Research</maintainer>
   <license>Apache-2.0</license>
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>joint_state_publisher_gui</exec_depend>
   <exec_depend>rviz2</exec_depend>
