@@ -31,17 +31,20 @@
       <!-- Joint 1 axis at z=47 mm; link STL is centred through its 8 mm thickness. -->
       <body name="link1" pos="0 0 0.047">
         <joint name="joint1" range="-2.967 2.967"/>
-        <geom name="link1_visual" type="mesh" mesh="link1_mesh" pos="0 0 -0.004" density="1200" contype="0" conaffinity="0" rgba="0.20 0.52 0.78 1"/>
+        <inertial pos="0.066559 -0.000015 -0.000189" mass="0.038986" fullinertia="0.000006260 0.000070916 0.000076763 -0.000000038 0.000000301 0.000000001"/>
+        <geom name="link1_visual" type="mesh" mesh="link1_mesh" pos="0 0 -0.004" mass="0" contype="0" conaffinity="0" rgba="0.20 0.52 0.78 1"/>
         <geom name="link1_collision_proxy" type="capsule" fromto="0.012 0 0 0.108 0 0" size="0.006" mass="0" rgba="0 0 0 0"/>
         <!-- CAD pivot-centre distance: approximately 120 mm. -->
         <body name="link2" pos="0.12 0 0">
           <joint name="joint2" range="-2.443 2.443"/>
-          <inertial pos="0.054871 -0.000017 -0.000214" mass="0.034343" fullinertia="0.000005442 0.000045824 0.000050901 -0.000000032 0.000000242 0.000000001"/>\n          <geom name="link2_visual" type="mesh" mesh="link2_mesh" pos="0 0 -0.004" mass="0" contype="0" conaffinity="0" rgba="0.22 0.62 0.72 1"/>
+          <inertial pos="0.054871 -0.000017 -0.000214" mass="0.034343" fullinertia="0.000005442 0.000045824 0.000050901 -0.000000032 0.000000242 0.000000001"/>
+          <geom name="link2_visual" type="mesh" mesh="link2_mesh" pos="0 0 -0.004" mass="0" contype="0" conaffinity="0" rgba="0.22 0.62 0.72 1"/>
           <geom name="link2_collision_proxy" type="capsule" fromto="0.012 0 0 0.088 0 0" size="0.0055" mass="0" rgba="0 0 0 0"/>
           <!-- CAD pivot-centre distance: approximately 100 mm. -->
           <body name="link3" pos="0.10 0 0">
             <joint name="joint3" range="-2.967 2.967"/>
-            <inertial pos="0.041044 0.000018 -0.003151" mass="0.031320" fullinertia="0.000003617 0.000020734 0.000022054 0.000000023 -0.000002215 0.000000003"/>\n            <geom name="link3_visual" type="mesh" mesh="link3_mesh" pos="0 0 -0.011" mass="0" contype="0" conaffinity="0" rgba="0.88 0.62 0.28 1"/>
+            <inertial pos="0.041044 0.000018 -0.003151" mass="0.031320" fullinertia="0.000003617 0.000020734 0.000022054 0.000000023 -0.000002215 0.000000003"/>
+            <geom name="link3_visual" type="mesh" mesh="link3_mesh" pos="0 0 -0.011" mass="0" contype="0" conaffinity="0" rgba="0.88 0.62 0.28 1"/>
             <geom name="link3_collision_proxy" type="capsule" fromto="0.012 0 0 0.048 0 0" size="0.005" mass="0" rgba="0 0 0 0"/>
             <!-- Tool point offset is a temporary placeholder; set from pen insertion depth. -->
             <site name="tool0" pos="0.06 0 -0.025" size="0.006" rgba="1 0.2 0.08 1"/>
