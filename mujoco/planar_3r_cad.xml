@@ -1,0 +1,62 @@
+<mujoco model="three_r_cad_digital_twin">
+  <compiler angle="radian" autolimits="true" meshdir="../assets/meshes"/>
+  <option timestep="0.002" integrator="implicitfast" gravity="0 0 -9.81"/>
+  <visual>
+    <headlight diffuse="0.72 0.72 0.72" ambient="0.32 0.32 0.32"/>
+    <global offwidth="1400" offheight="1000"/>
+  </visual>
+  <default>
+    <joint type="hinge" axis="0 0 1" damping="0.06" armature="0.001"/>
+    <geom friction="0.8 0.02 0.002"/>
+    <position kp="28" kv="2.0"/>
+  </default>
+  <asset>
+    <mesh name="base_ring_mesh" file="Base_Ring.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="base_lid_mesh" file="Base_Lid.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="link1_mesh" file="Link1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="link2_mesh" file="Link2.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="link3_mesh" file="Link3_PenHolder.stl" scale="0.001 0.001 0.001"/>
+  </asset>
+  <worldbody>
+    <light pos="0.2 0.1 0.8" dir="-0.2 -0.1 -1"/>
+    <camera name="top" pos="0.14 0.16 0.75" xyaxes="1 0 0 0 1 0"/>
+    <geom name="ground" type="plane" pos="0 0 -0.002" size="1 1 0.01" rgba="0.88 0.9 0.92 1"/>
+
+    <!-- Base ring at z=0..36 mm; lid stacked at z=36..43 mm.
+         This vertical assembly offset is provisional because STL exports omit CAD mates. -->
+    <body name="base_link" pos="0 0 0">
+      <geom name="base_ring_visual" type="mesh" mesh="base_ring_mesh" contype="0" conaffinity="0" rgba="0.30 0.34 0.40 1"/>
+      <geom name="base_lid_visual" type="mesh" mesh="base_lid_mesh" pos="0 0 0.036" contype="0" conaffinity="0" rgba="0.48 0.53 0.60 1"/>
+
+      <!-- Joint 1 axis at z=47 mm; link STL is centred through its 8 mm thickness. -->
+      <body name="link1" pos="0 0 0.047">
+        <joint name="joint1" range="-2.967 2.967"/>
+        <geom name="link1_visual" type="mesh" mesh="link1_mesh" pos="0 0 -0.004" density="1200" contype="0" conaffinity="0" rgba="0.20 0.52 0.78 1"/>
+        <geom name="link1_collision_proxy" type="capsule" fromto="0.012 0 0 0.108 0 0" size="0.006" mass="0" rgba="0 0 0 0"/>
+        <!-- CAD pivot-centre distance: approximately 120 mm. -->
+        <body name="link2" pos="0.12 0 0">
+          <joint name="joint2" range="-2.443 2.443"/>
+          <geom name="link2_visual" type="mesh" mesh="link2_mesh" pos="0 0 -0.004" density="1200" contype="0" conaffinity="0" rgba="0.22 0.62 0.72 1"/>
+          <geom name="link2_collision_proxy" type="capsule" fromto="0.012 0 0 0.088 0 0" size="0.0055" mass="0" rgba="0 0 0 0"/>
+          <!-- CAD pivot-centre distance: approximately 100 mm. -->
+          <body name="link3" pos="0.10 0 0">
+            <joint name="joint3" range="-2.967 2.967"/>
+            <geom name="link3_visual" type="mesh" mesh="link3_mesh" pos="0 0 -0.011" density="1200" contype="0" conaffinity="0" rgba="0.88 0.62 0.28 1"/>
+            <geom name="link3_collision_proxy" type="capsule" fromto="0.012 0 0 0.048 0 0" size="0.005" mass="0" rgba="0 0 0 0"/>
+            <!-- Tool point offset is a temporary placeholder; set from pen insertion depth. -->
+            <site name="tool0" pos="0.06 0 -0.025" size="0.006" rgba="1 0.2 0.08 1"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <position name="motor1" joint="joint1" ctrlrange="-2.967 2.967"/>
+    <position name="motor2" joint="joint2" ctrlrange="-2.443 2.443"/>
+    <position name="motor3" joint="joint3" ctrlrange="-2.967 2.967"/>
+  </actuator>
+  <contact>
+    <exclude body1="link1" body2="link2"/>
+    <exclude body1="link2" body2="link3"/>
+  </contact>
+</mujoco>
