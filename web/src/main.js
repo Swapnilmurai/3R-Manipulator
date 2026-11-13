@@ -1,5 +1,4 @@
 import "./style.css";
-import "./mujoco-sim.js";
 
 const app = document.querySelector("#app");
 app.innerHTML = `
@@ -69,3 +68,13 @@ app.innerHTML = `
   </section>
   <footer>3R Manipulator Research Workspace <span>Browser MuJoCo physics · no robot hardware connection</span></footer>
 </main>`;
+
+
+// Load the simulator only after its DOM elements have been inserted.
+import("./mujoco-sim.js").catch((error) => {
+  console.error("Could not load the MuJoCo simulator module:", error);
+  const status = document.getElementById("sim-status");
+  const detail = document.getElementById("sim-error");
+  if (status) status.textContent = "Simulator module failed to load";
+  if (detail) detail.textContent = error?.message || String(error);
+});
