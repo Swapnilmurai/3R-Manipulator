@@ -11,3 +11,5 @@ assets/cad/*
 assets/meshes/*
 !assets/meshes/.gitkeep
 *.log
+
+web/public/wasm/mujoco.wasm
