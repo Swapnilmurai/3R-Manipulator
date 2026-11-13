@@ -47,7 +47,7 @@
             <geom name="link3_visual" type="mesh" mesh="link3_mesh" pos="0 0 -0.011" mass="0" contype="0" conaffinity="0" rgba="0.88 0.62 0.28 1"/>
             <geom name="link3_collision_proxy" type="capsule" fromto="0.012 0 0 0.048 0 0" size="0.005" mass="0" rgba="0 0 0 0"/>
             <!-- Tool point offset is a temporary placeholder; set from pen insertion depth. -->
-            <site name="tool0" pos="0.06 0 -0.025" size="0.006" rgba="1 0.2 0.08 1"/>
+            <site name="tool0" pos="0.06 0 -0.050" size="0.006" rgba="1 0.2 0.08 1"/>
           </body>
         </body>
       </body>
