@@ -1,4 +1,4 @@
-name: Python and MuJoCo smoke tests
+name: Python, MuJoCo, and browser build tests
 on:
   push:
     branches: [main]
@@ -8,7 +8,7 @@ on:
 permissions:
   contents: read
 jobs:
-  test:
+  python:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: python -m pip install -r requirements.txt
       - name: Kinematics tests
         run: python -m pytest -q
@@ -32,3 +32,24 @@ jobs:
           PY
       - name: MuJoCo primitive-model smoke test
         run: python mujoco/run_simulation.py --primitive --no-viewer
+
+  browser:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: .
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Install browser dependencies
+        run: npm install
+      - name: Build MuJoCo WebAssembly dashboard
+        run: npm run build
+      - name: Verify WebAssembly payload was emitted
+        run: test -s public/wasm/mujoco.wasm
