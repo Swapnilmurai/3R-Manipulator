@@ -1,9 +1,10 @@
 robot:
-  name: three_r_planar
+  name: three_r_planar_cad
   base_frame: base_link
   end_effector_frame: tool0
-  # Provisional research dimensions; replace from CAD measurements.
-  link_lengths_m: [0.18, 0.12, 0.07]
+  # Approximate pivot-hole centre distances measured from individual STL meshes.
+  # Not a substitute for checking the native CAD assembly mate origins.
+  link_lengths_m: [0.12, 0.10, 0.06]
   joint_limits_rad:
     - [-2.967, 2.967]
     - [-2.443, 2.443]
@@ -11,7 +12,13 @@ robot:
   joint_names: [joint1, joint2, joint3]
   mesh_scale_from_mm: 0.001
   cad_meshes:
-    link1: assets/meshes/link1.stl
-    link2: assets/meshes/link2.stl
-    link3: assets/meshes/link3.stl
-  notes: "Provisional starter values only; confirm against CAD and physical calibration."
+    base_ring: assets/meshes/Base_Ring.stl
+    base_lid: assets/meshes/Base_Lid.stl
+    link1: assets/meshes/Link1.stl
+    link2: assets/meshes/Link2.stl
+    link3: assets/meshes/Link3_PenHolder.stl
+  provisional:
+    uniform_density_kg_m3: 1200
+    base_joint_height_m: 0.047
+    tool_offset_m: [0.06, 0.0, -0.05]
+  notes: "STL files do not encode material density or assembly mate frames. Verify inertias and transforms against native CAD and measured hardware."
