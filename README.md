@@ -6,7 +6,7 @@ Research workspace for the planar 3R manipulator, covering CAD-derived geometry,
 
 Five supplied component meshes were inspected: `Base_Ring.stl`, `Base_Lid.stl`, `Link1.stl`, `Link2.stl`, and `Link3_PenHolder.stl`. Source STL coordinates are millimetres. Approximate pivot-hole centre spacings measured from the link meshes are **120 mm, 100 mm, and 60 mm**.
 
-Download the accompanying `3R_Manipulator_CAD_Assets.tar.xz` project attachment and extract it at the repository root. It populates both `assets/meshes/` for MuJoCo and `ros2_ws/src/three_r_description/meshes/` for ROS 2.
+Download the accompanying `3R_Manipulator_CAD_Assets.zip` project attachment and extract it at the repository root. It populates both `assets/meshes/` for MuJoCo and `ros2_ws/src/three_r_description/meshes/` for ROS 2.
 
 **Important:** separate STL exports do not contain original assembly mate transforms, motor shaft datums, or tool insertion depth. The base joint height and tool-tip offset in the starter models are provisional. Link masses and inertias use an assumed uniform density of 1,200 kg/m³ because STL contains no material-density metadata. Verify these values against the native CAD assembly and physical measurements before drawing conclusions about dynamics or enabling hardware.
 
