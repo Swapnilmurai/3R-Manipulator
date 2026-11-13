@@ -1,0 +1,35 @@
+<mujoco model="planar_3r_starter">
+  <compiler angle="radian" autolimits="true"/>
+  <option timestep="0.002" integrator="implicitfast" gravity="0 0 -9.81"/>
+  <visual><headlight diffuse="0.7 0.7 0.7" ambient="0.3 0.3 0.3"/></visual>
+  <default>
+    <joint type="hinge" axis="0 0 1" damping="0.08" armature="0.002"/>
+    <geom density="650" friction="0.8 0.02 0.002" rgba="0.25 0.48 0.75 1"/>
+    <position kp="35" kv="3"/>
+  </default>
+  <worldbody>
+    <light pos="0 0 1.2" dir="0 0 -1"/>
+    <camera name="top" pos="0.18 0.18 0.95" xyaxes="1 0 0 0 1 0"/>
+    <body name="base" pos="0 0 0.04">
+      <geom name="base_geom" type="cylinder" size="0.025 0.02" rgba="0.25 0.25 0.28 1"/>
+      <body name="link1" pos="0 0 0">
+        <joint name="joint1" range="-2.967 2.967"/>
+        <geom name="link1_geom" type="capsule" fromto="0 0 0 0.18 0 0" size="0.009"/>
+        <body name="link2" pos="0.18 0 0">
+          <joint name="joint2" range="-2.443 2.443"/>
+          <geom name="link2_geom" type="capsule" fromto="0 0 0 0.12 0 0" size="0.008"/>
+          <body name="link3" pos="0.12 0 0">
+            <joint name="joint3" range="-2.967 2.967"/>
+            <geom name="link3_geom" type="capsule" fromto="0 0 0 0.07 0 0" size="0.007"/>
+            <site name="tool0" pos="0.07 0 0" size="0.006" rgba="1 0.2 0.1 1"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <position name="motor1" joint="joint1"/>
+    <position name="motor2" joint="joint2"/>
+    <position name="motor3" joint="joint3"/>
+  </actuator>
+</mujoco>
