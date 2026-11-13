@@ -65,15 +65,17 @@ ros2 launch three_r_description view_robot.launch.py
 
 The launch file opens a preconfigured RViz view. Check the TF tree, joint axes, limits, base height, and tool point before connecting any controller. The `three_r_control` package is a demo trajectory publisher, not a final `ros2_control` hardware interface.
 
-## Web hosting
+## Browser MuJoCo simulation and hosting
 
-The dashboard is a static Vite site. It does not run MuJoCo, ROS 2, or hardware control in the browser.
+The Vite dashboard now embeds the official `@mujoco/mujoco` 3.17 JavaScript/WebAssembly bindings and Three.js. MuJoCo physics executes in the browser tab; the page includes joint-position targets, pause/reset, and DLS-driven circle/square demos. The embedded browser MJCF uses simplified capsule link geometry with CAD-measured 120/100/60 mm pivot spacings. The full CAD-mesh MJCF remains in `mujoco/planar_3r_cad.xml` for native desktop simulation.
 
-**GitHub Pages:** open repository **Settings → Pages**, select **GitHub Actions** as the build/deploy source, and run the `Deploy static dashboard to GitHub Pages` workflow (or push a change under `web/`). The workflow builds `web/` and publishes `web/dist`. The workflow is committed, but hosting is not yet confirmed live.
+The `web/scripts/copy-mujoco-wasm.mjs` build step copies the package's `dist/mujoco.wasm` into `web/public/wasm/`, and the browser loader requests it from `/wasm/mujoco.wasm`.
 
-**Vercel:** import this GitHub repository into Vercel and set the project Root Directory to `web`, Build Command to `npm run build`, and Output Directory to `dist`. No Vercel deployment is claimed from this workspace.
+**Vercel:** import `Swapnilmurai/3R-Manipulator` as a Git project and set Root Directory to `web`. Build Command is `npm run build`; Output Directory is `dist`; Node.js 22 is recommended. The Vercel connector still needs team-scope approval before a deployment can be created from this workspace.
 
-For live monitoring later, run a secured local ROS bridge/API on the workstation and connect the hosted dashboard via authenticated WebSocket. Do not expose robot-control endpoints publicly without authentication, command limits, and an emergency-stop path.
+**GitHub Pages:** the existing Pages workflow builds the dashboard from `web/`. It can be enabled under repository **Settings → Pages → GitHub Actions**. Vercel is the preferred deployment target for the browser simulator.
+
+MuJoCo running in the browser is separate from the native Python/ROS 2 runtime. This hosted demo does not connect to the workstation or physical hardware. Do not expose robot-control endpoints publicly without authentication, command limits, and an emergency-stop path.
 
 ## Training roadmap
 
