@@ -3,7 +3,8 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const source = resolve(root, "node_modules/@mujoco/mujoco/dist/mujoco.wasm");
+// @mujoco/mujoco exports the single-threaded binary from the package root.
+const source = resolve(root, "node_modules/@mujoco/mujoco/mujoco.wasm");
 const destination = resolve(root, "public/wasm/mujoco.wasm");
 
 try {
