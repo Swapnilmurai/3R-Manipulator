@@ -1,41 +1,30 @@
-<mujoco model="three_r_browser_wasm">
+<mujoco model="three_r_28byj48_browser_physics">
   <compiler angle="radian" autolimits="true"/>
   <option timestep="0.002" integrator="implicitfast" gravity="0 0 -9.81"/>
-  <visual>
-    <headlight diffuse="0.72 0.72 0.72" ambient="0.32 0.32 0.32"/>
-    <global offwidth="1400" offheight="1000"/>
-  </visual>
   <default>
-    <joint type="hinge" axis="0 0 1" damping="0.06" armature="0.001"/>
+    <joint type="hinge" axis="0 0 1" damping="0.03" armature="0.0005"/>
     <geom friction="0.8 0.02 0.002" condim="3"/>
-    <position kp="28" kv="2.0"/>
+    <position kp="18" kv="1.2"/>
   </default>
   <worldbody>
     <light directional="true" pos="0.2 -0.3 0.8" dir="-0.2 0.3 -1" diffuse="0.8 0.8 0.8"/>
-    <light directional="true" pos="-0.3 0.2 0.6" dir="0.2 -0.1 -1" diffuse="0.4 0.4 0.4"/>
-    <geom name="writing_plane" type="plane" pos="0 0 -0.006" size="0.45 0.45 0.02" rgba="0.90 0.92 0.94 1" contype="1" conaffinity="1"/>
-    <geom name="base_foot" type="cylinder" pos="0 0 0.008" size="0.068 0.008" rgba="0.25 0.29 0.34 1" contype="0" conaffinity="0"/>
-    <geom name="base_lid" type="cylinder" pos="0 0 0.034" size="0.060 0.010" rgba="0.48 0.53 0.60 1" contype="0" conaffinity="0"/>
-    <body name="base_link" pos="0 0 0.047">
-      <geom name="turntable" type="cylinder" size="0.025 0.006" rgba="0.20 0.24 0.30 1" contype="0" conaffinity="0"/>
-      <body name="link1" pos="0 0 0">
-        <joint name="joint1" range="-2.967 2.967"/>
-        <inertial pos="0.066559 -0.000015 -0.000189" mass="0.038986" diaginertia="0.000006260 0.000070916 0.000076763"/>
-        <geom name="link1_geom" type="capsule" fromto="0.012 0 0 0.108 0 0" size="0.0065" mass="0" rgba="0.20 0.52 0.78 1"/>
-        <geom name="joint1_hub" type="cylinder" pos="0 0 0" size="0.014 0.006" mass="0" rgba="0.10 0.25 0.38 1"/>
-        <body name="link2" pos="0.12 0 0">
-          <joint name="joint2" range="-2.443 2.443"/>
-          <inertial pos="0.054871 -0.000017 -0.000214" mass="0.034343" diaginertia="0.000005442 0.000045824 0.000050901"/>
-          <geom name="link2_geom" type="capsule" fromto="0.012 0 0 0.088 0 0" size="0.0058" mass="0" rgba="0.22 0.62 0.72 1"/>
-          <geom name="joint2_hub" type="cylinder" pos="0 0 0" size="0.012 0.005" mass="0" rgba="0.10 0.32 0.38 1"/>
-          <body name="link3" pos="0.10 0 0">
-            <joint name="joint3" range="-2.967 2.967"/>
-            <inertial pos="0.041044 0.000018 -0.003151" mass="0.031320" diaginertia="0.000003617 0.000020734 0.000022054"/>
-            <geom name="link3_geom" type="capsule" fromto="0.012 0 0 0.048 0 0" size="0.0052" mass="0" rgba="0.88 0.62 0.28 1"/>
-            <geom name="pen_holder" type="cylinder" pos="0.056 0 -0.010" size="0.009 0.012" mass="0" rgba="0.76 0.48 0.20 1"/>
-            <geom name="pen_shaft" type="capsule" fromto="0.060 0 -0.020 0.060 0 -0.050" size="0.0022" mass="0" rgba="0.18 0.20 0.22 1"/>
-            <site name="tool0" pos="0.060 0 -0.050" size="0.006" rgba="1 0.18 0.08 1"/>
-          </body>
+    <geom name="writing_plane" type="plane" pos="0 0 -0.006" size="0.45 0.45 0.02" rgba="0.90 0.92 0.94 1"/>
+    <geom name="base_collision" type="cylinder" pos="0 0 0.018" size="0.070 0.018" rgba="0.0 0.0 0.0 0" contype="0" conaffinity="0"/>
+    <body name="link1" pos="0 0 0.043">
+      <joint name="joint1" range="-2.967 2.967"/>
+      <inertial pos="0.066559 -0.000015 -0.000189" mass="0.038986" diaginertia="0.000006260 0.000070916 0.000076763"/>
+      <geom name="link1_collision" type="capsule" fromto="0.010 0 0 0.110 0 0" size="0.010" mass="0"/>
+      <body name="link2" pos="0.120 0 0.008">
+        <joint name="joint2" range="-2.443 2.443"/>
+        <inertial pos="0.054871 -0.000017 -0.000214" mass="0.034343" diaginertia="0.000005442 0.000045824 0.000050901"/>
+        <geom name="link2_collision" type="capsule" fromto="0.010 0 0 0.090 0 0" size="0.009" mass="0"/>
+        <body name="link3" pos="0.100 0 0.008">
+          <joint name="joint3" range="-2.967 2.967"/>
+          <inertial pos="0.041044 0.000018 -0.003151" mass="0.031320" diaginertia="0.000003617 0.000020734 0.000022054"/>
+          <geom name="link3_collision" type="capsule" fromto="0.008 0 0 0.050 0 0" size="0.008" mass="0"/>
+          <geom name="pen_holder" type="cylinder" pos="0.060 0 -0.014" size="0.009 0.012" mass="0"/>
+          <geom name="pen_shaft" type="capsule" fromto="0.060 0 -0.020 0.060 0 -0.050" size="0.002" mass="0"/>
+          <site name="tool0" pos="0.060 0 -0.050" size="0.005" rgba="1 0.18 0.08 1"/>
         </body>
       </body>
     </body>
