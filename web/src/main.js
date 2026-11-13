@@ -1,0 +1,17 @@
+import "./style.css";
+
+const app = document.querySelector("#app");
+app.innerHTML = `
+<header class="top"><div class="brand"><span class="mark">3R</span><div><b>MANIPULATOR LAB</b><small>Digital twin · Research workspace</small></div></div><span class="pill">SIMULATION FOUNDATION</span></header>
+<main>
+<section class="hero"><div><p class="eyebrow">PLANAR ROBOTICS · WRITING AUTOMATION</p><h1>From CAD assembly<br><em>to intelligent writing.</em></h1><p class="lead">A unified workspace for the three-link manipulator: CAD-derived geometry, MuJoCo dynamics, ROS 2 interfaces, and learning-based trajectory generation.</p><div class="actions"><a href="https://github.com/Swapnilmurai/3R-Manipulator" target="_blank" rel="noreferrer">Open GitHub repository ↗</a><a class="secondary" href="#roadmap">Explore roadmap ↓</a></div></div><div class="schematic"><svg viewBox="0 0 440 280" role="img" aria-label="Schematic three-link planar manipulator"><path d="M42 235H404" class="axis"/><path d="M80 235L190 130L280 175L360 100" class="path"/><circle cx="80" cy="235" r="13" class="joint"/><circle cx="190" cy="130" r="10" class="joint"/><circle cx="280" cy="175" r="9" class="joint"/><circle cx="360" cy="100" r="8" class="tip"/><text x="105" y="190">L1 · 180 mm*</text><text x="211" y="111">L2 · 120 mm*</text><text x="300" y="145">L3 · 70 mm*</text><text x="350" y="75">TOOL</text><text x="40" y="260" class="muted">BASE</text></svg><small>* Provisional nominal dimensions; pending CAD verification.</small></div></section>
+<section class="stats"><article><small>DOF</small><b>03</b><span>Revolute joints</span></article><article><small>SIMULATION</small><b>MuJoCo</b><span>Rigid-body dynamics</span></article><article><small>ROBOT DESCRIPTION</small><b>ROS 2</b><span>URDF / Xacro</span></article><article><small>END GOAL</small><b>Writing AI</b><span>Trajectory learning</span></article></section>
+<section id="roadmap"><div class="section-head"><div><p class="eyebrow">IMPLEMENTATION PLAN</p><h2>Build the digital twin in layers.</h2></div><p>Validate each layer before connecting it to hardware.</p></div><div class="cards">
+<article><span>01 / GEOMETRY</span><h3>CAD → meshes</h3><p>Extract rigid links, joint frames, mass properties, and collision geometry from the supplied assembly.</p><b class="status pending">Waiting for CAD files</b></article>
+<article><span>02 / DIGITAL TWIN</span><h3>MuJoCo model</h3><p>Match dimensions, inertias, joint axes, limits, and actuator behavior. Verify forward kinematics.</p><b class="status starter">Starter scaffold added</b></article>
+<article><span>03 / ROBOT SOFTWARE</span><h3>ROS 2 + URDF</h3><p>Publish a consistent TF tree, inspect the robot in RViz, and add trajectory interfaces.</p><b class="status starter">Starter scaffold added</b></article>
+<article><span>04 / INTELLIGENCE</span><h3>Learn to write</h3><p>Generate letter and shape datasets, train trajectory models, and measure tracking and smoothness.</p><b class="status planned">Planned after validation</b></article>
+</div></section>
+<section class="notice"><div><p class="eyebrow">LIVE CONTROL — NOT CONNECTED</p><h2>Local simulation stays local.</h2><p>This site is a static dashboard. MuJoCo and ROS 2 run on your workstation; a secured local bridge can be added later for telemetry and controls.</p></div><div class="connection"><span></span> No robot connection</div></section>
+<footer>3R Manipulator Research Workspace <span>CAD-dependent parameters are deliberately marked provisional.</span></footer>
+</main>`;
