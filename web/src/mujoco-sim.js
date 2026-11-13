@@ -90,7 +90,8 @@ class BrowserMuJoCo {
 
   async init() {
     this.setStatus("Loading MuJoCo WebAssembly…");
-    this.mujoco = await loadMujoco({\n      locateFile: (path, prefix) => path.endsWith(".wasm") ? "/wasm/mujoco.wasm" : prefix + path\n    });
+    this.mujoco = await loadMujoco({
+      locateFile: (path, prefix) => path.endsWith(".wasm") ? "/wasm/mujoco.wasm" : prefix + path\n    });
     this.model = this.mujoco.MjModel.from_xml_string(modelXml);
     if (!this.model) throw new Error("MuJoCo could not compile the 3R MJCF model.");
     this.data = new this.mujoco.MjData(this.model);
